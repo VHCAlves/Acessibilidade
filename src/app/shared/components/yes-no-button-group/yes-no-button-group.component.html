@@ -1,0 +1,68 @@
+<!--ACESSIBILIDADE USANDO TAGS SEMANTICAS-->
+<!--
+<div
+  class="button-group"
+  role="radiogroup"
+  [attr.arial-label]="label">
+  <label>{{ label }}</label>
+  <div class="radio">
+    <input
+      [attr.id]="id + '-yes'"
+      type="radio"
+      [attr.name]="id"
+      [attr.checked]="value === options.YES"
+      (change)="activate(options.YES)">
+      <label
+        [attr.for]="id + '-yes'"
+        class="button button-yes">
+        Yes
+      </label>
+  </div>
+  <div class="radio">
+    <input [attr.id]="id + '-no'" type="radio" [attr.name]="id" [attr.checked]="value === options.NO"
+      (change)="activate(options.NO)">
+    <label [attr.for]="id + '-no'" class="button button-yes">
+      No
+    </label>
+  </div>
+
+</div>-->
+
+<!--ACESSIBILIDADE SEM USAR TAGS SEMANTICAS-->
+<div
+  appKm
+  class="button-group"
+  role="radiogroup"
+  [attr.aria-labelledby]="id">
+  <label
+    [attr.id]="id"
+    class="label">
+    {{ label }}
+  </label>
+  <button
+    appKmItem
+    (focused)="activate(options.YES)"
+    type="button"
+    role="radio"
+    [attr.disabled] = "disabled ? disabled : null"
+    [attr.tabindex] = "value === options.YES || null ? 1 : 0"
+    [attr.aria-checked]="value === options.YES"
+    class="button button-yes"
+    [class.button-pressed]="value === options.YES"
+    (click)="activate(options.YES)">
+    Yes
+  </button>
+  <button
+    appKmItem
+    (focused)="activate(options.NO)"
+    type="button"
+    role="radio"
+    [attr.disabled] = "disabled ? disabled : null"
+    [attr.tabindex] = "value === options.YES || null ? 1 : 0"
+    [attr.aria-checked]="value === options.NO"
+    class="button button-no"
+    [class.button-pressed]="value === options.NO"
+    (click)="activate(options.NO)">
+    No
+  </button>
+</div>
